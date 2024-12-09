@@ -158,6 +158,7 @@ function generateQuestion() {
 let questionData = generateQuestion();
 
 function setQuestion(){
+    clearInput()
     questionData = generateQuestion();
     document.getElementById('question').textContent = questionData[0];
     document.getElementById('answer').textContent = ""
