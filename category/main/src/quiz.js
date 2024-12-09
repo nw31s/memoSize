@@ -150,12 +150,14 @@ function generateQuestion() {
     let pre = Math.floor(Math.random() * 128) + 1;
     let answernumber = saizeKeys[pre]
     let question = saizeValues[pre]
-    console.log(answernumber)
-    console.log(question)
     return [question, answernumber];
 }
 
 let questionData = generateQuestion();
+
+let solveq = 0
+let correcttimes = 0
+let correctrate = 0
 
 function setQuestion(){
     clearInput()
@@ -166,10 +168,19 @@ function setQuestion(){
 
 function answerCheck() {
     const input = document.getElementById('productNumber');
+    solveq += 1
     let resultdata = document.getElementById('answer')
+
+    let s_quest = document.getElementById('solvequestion')
     if (input.value == questionData[1]) {
+        correcttimes += 1
         resultdata.textContent = "正解です!"
     } else {
         resultdata.textContent = "不正解です。正解は「" + questionData[1] + "」です。"
     }
+    correctrate = (correcttimes / solveq) * 100
+
+    document.getElementById('correctrate').textContent = "正答率: " + correctrate + "%"
+    document.getElementById('correcttimes').textContent = "正解した問題: " + correcttimes + "個"
+    document.getElementById('solvequestions').textContent = "解いた問題: " + solveq + "個"
 }
